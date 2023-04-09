@@ -1,0 +1,53 @@
+import firebase_admin
+from firebase_admin import credentials, firestore
+import os
+from dotenv import load_dotenv
+from associations import Association
+
+#Set Variables
+load_dotenv()
+
+# Set up Firebase
+PATH_TO_FIREBASE_CONFIG= os.getenv("PATH_TO_FIREBASE_CONFIG", "")
+print("here", PATH_TO_FIREBASE_CONFIG)
+cred = credentials.Certificate(PATH_TO_FIREBASE_CONFIG)
+firebase_admin.initialize_app(cred)
+db = firestore.client()
+
+# Insert an example association into Firestore
+vector1 = [1.0, 2.0, 3.0]
+vector2 = [4.0, 5.0, 6.0]
+association_description = "Example association"
+
+test = Association(vector1, vector2, association_description)
+
+doc_ref = db.collection("associations")
+doc_ref.add(test.to_firebase())
+
+def associative_memory_agent(new_information: str):
+    # Retrieve existing knowledge from Pinecone
+    existing_knowledge = index.fetch_all(namespace=OBJECTIVE)
+
+    # Use OpenAI API to look for connections between the new information and the existing knowledge
+    prompt = f"""
+    You are an AI with associative memory and cross-disciplinary thinking capabilities.
+    Given the new information: {new_information}
+    And the existing knowledge: {', '.join([item["task"] for item in existing_knowledge.values()])}
+    Identify any connections or associations between the new information and the existing knowledge.
+    Return the associations as a list of tuples (new_information, connected_knowledge).
+    """
+
+    response = openai_call(prompt, temperature=0.7, max_tokens=200)
+    associations = response.split("\n") if "\n" in response else [response]
+
+    # Parse associations and update Pinecone index with new associations
+    for association in associations:
+        # Parse association tuple (new_information, connected_knowledge)
+        new_info, connected_knowledge = association.strip("()").split(",")
+
+        # Update Pinecone index with the new association
+        vector = get_ada_embedding(new_info.strip() + " " + connected_knowledge.strip())
+        index.upsert(
+            [(f"association_{new_info.strip()}_{connected_knowledge.strip()}", vector, {"association": association})],
+            namespace=OBJECTIVE
+        )

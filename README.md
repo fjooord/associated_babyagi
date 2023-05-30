@@ -5,8 +5,12 @@ Attempt to add in an associated memory structure to babyagi
 Associations are stored in firebase as relationship between 2 vectors in the pinecone vector store
 Essentially making a knowledge graph of associations the system had learned.
 
+# Image of ideal functionality
+
+
 # How It Works
 The script works in the same way as the original baby agi along with another step
+![AGI_Associations](https://github.com/fjooord/associated_babyagi/assets/44952366/6ba927df-5d79-43ff-b305-590b480fd4a6)
 
 
 
@@ -41,4 +45,4 @@ This system is designed to utilize the capabilities of GPT, Pinecone, and a Fire
   - It constructs a full prompt asking for cross-disciplinary connections related to the given knowledge.
   - It sends this prompt to the OpenAI API.
   - It parses the response to extract the suggestions and returns them.
-  - 
+ 

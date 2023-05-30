@@ -1,52 +1,44 @@
-# babyagi
-
+# associated babyagi
 
 # Objective
-This Python script is an example of an AI-powered task management system. The system uses OpenAI and Pinecone APIs to create, prioritize, and execute tasks. The main idea behind this system is that it creates tasks based on the result of previous tasks and a predefined objective. The script then uses OpenAI's natural language processing (NLP) capabilities to create new tasks based on the objective, and Pinecone to store and retrieve task results for context. This is a paired-down version of the original [Task-Driven Autonomous Agent](https://twitter.com/yoheinakajima/status/1640934493489070080?s=20) (Mar 28, 2023).
+Attempt to add in an associated memory structure to babyagi
+Associations are stored in firebase as relationship between 2 vectors in the pinecone vector store
+Essentially making a knowledge graph of associations the system had learned.
 
-This README will cover the following:
-
-* How the script works 
-
-* How to use the script 
-* Warning about running the script continuously
 # How It Works
-The script works by running an infinite loop that does the following steps:
+The script works in the same way as the original baby agi along with another step
 
-1. Pulls the first task from the task list.
-2. Sends the task to the execution agent, which uses OpenAI's API to complete the task based on the context.
-3. Enriches the result and stores it in Pinecone.
-4. Creates new tasks and reprioritizes the task list based on the objective and the result of the previous task.
-The execution_agent() function is where the OpenAI API is used. It takes two parameters: the objective and the task. It then sends a prompt to OpenAI's API, which returns the result of the task. The prompt consists of a description of the AI system's task, the objective, and the task itself. The result is then returned as a string.
 
-The task_creation_agent() function is where OpenAI's API is used to create new tasks based on the objective and the result of the previous task. The function takes four parameters: the objective, the result of the previous task, the task description, and the current task list. It then sends a prompt to OpenAI's API, which returns a list of new tasks as strings. The function then returns the new tasks as a list of dictionaries, where each dictionary contains the name of the task.
 
-The prioritization_agent() function is where OpenAI's API is used to reprioritize the task list. The function takes one parameter, the ID of the current task. It sends a prompt to OpenAI's API, which returns the reprioritized task list as a numbered list.
+This system is designed to utilize the capabilities of GPT, Pinecone, and a Firebase database to provide nuanced responses based on both the given task and the associations found in the existing knowledge.
 
-Finally, the script uses Pinecone to store and retrieve task results for context. The script creates a Pinecone index based on the table name specified in YOUR_TABLE_NAME variable. Pinecone is then used to store the results of the task in the index, along with the task name and any additional metadata.
 
-# How to Use
-To use the script, you will need to follow these steps:
+## execution_agent() is the main function that performs tasks based on a given objective.
 
-1. Install the required packages: `pip install -r requirements.txt`
-2. Copy the .env.example file to .env: `cp .env.example .env`. This is where you will set the following variables.
-3. Set your OpenAI and Pinecone API keys in the OPENAI_API_KEY and PINECONE_API_KEY variables.
-4. Set the Pinecone environment in the PINECONE_ENVIRONMENT variable.
-5. Set the name of the table where the task results will be stored in the TABLE_NAME variable.
-6. Set the objective of the task management system in the OBJECTIVE variable. Alternatively you can pass it to the script as a quote argument.
-```
-./babyagi.py ["<objective>"]
-```
-7. Set the first task of the system in the FIRST_TASK variable.
-8. Run the script.
+  - It first collects the context using the context_agent() function. The context is determined by querying an index in Pinecone and returning the metadata of the top matches.
+  - It then uses the context and objective to generate a prompt for the OpenAI API.
+  - It calls the OpenAI API with the prompt, and returns the response.
 
-# Warning
-This script is designed to be run continuously as part of a task management system. Running this script continuously can result in high API usage, so please use it responsibly. Additionally, the script requires the OpenAI and Pinecone APIs to be set up correctly, so make sure you have set up the APIs before running the script.
+## context_agent() collects the context for a given query by querying Pinecone and returning metadata of top matches.
 
-# Contribution
-Very appreciative of the PRs, which I've started pulling! I am new to GitHub and open source, so please be patient as I learn to manage this project properly. I run a VC firm by day, so I will generally be checking PRs and issues at night after I get my kids down - which may not be every night. Open to the idea of bringing in support, will be updating this section soon (expectations, visions, etc). Talking to lots of people and learning - hang tight for updates!
+  - It first generates an embedding of the query using get_ada_embedding().
+  - It then queries the Pinecone index using this embedding and returns the top n matches.
+  - It sorts the matches by score in descending order.
+  - It collects the metadata of the matches into a context.
+  - It retrieves the associated information from a Firebase database, if any vector in the retrieved vectors is present in the associations in the database.
+  - It finally returns the context concatenated with the associated information.
 
-# Backstory
-BabyAGI is a paired-down version of the original [Task-Driven Autonomous Agent](https://twitter.com/yoheinakajima/status/1640934493489070080?s=20) (Mar 28, 2023) shared on Twitter. This version is down to 140 lines: 13 comments, 22 blank, 105 code. The name of the repo came up in the reaction to the original autonomous agent - the author does not mean to imply that this is AGI.
+## find_new_associations() is a function that finds and stores new associations between a new vector and the existing knowledge in a given table.
 
-Made with love by [@yoheinakajima](https://twitter.com/yoheinakajima), who happens to be a VC (would love to see what you're building!)
+  - It first gets possible related topics using the get_possible_related_topics() function.
+  - For each topic, it generates an embedding and queries the Pinecone index for the top matches.
+  - For each match, it checks if there are any connections between the new information and the existing knowledge using the OpenAI API.
+  - If a connection is found, it describes the connection using the OpenAI API and appends the new association to the list of new associations.
+  - It returns the new associations.
+
+## get_possible_related_topics() is a function that uses the OpenAI API to suggest topics related to a given prompt.
+
+  - It constructs a full prompt asking for cross-disciplinary connections related to the given knowledge.
+  - It sends this prompt to the OpenAI API.
+  - It parses the response to extract the suggestions and returns them.
+  - 

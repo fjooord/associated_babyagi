@@ -6,12 +6,11 @@ Associations are stored in firebase as relationship between 2 vectors in the pin
 Essentially making a knowledge graph of associations the system had learned.
 
 # Image of ideal functionality
+![AGI_Associations](https://github.com/fjooord/associated_babyagi/assets/44952366/6ba927df-5d79-43ff-b305-590b480fd4a6)
 
 
 # How It Works
 The script works in the same way as the original baby agi along with another step
-![AGI_Associations](https://github.com/fjooord/associated_babyagi/assets/44952366/6ba927df-5d79-43ff-b305-590b480fd4a6)
-
 
 
 This system is designed to utilize the capabilities of GPT, Pinecone, and a Firebase database to provide nuanced responses based on both the given task and the associations found in the existing knowledge.

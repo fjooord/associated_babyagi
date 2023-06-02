@@ -1,12 +1,1 @@
-{
-  "type": "service_account",
-  "project_id": "babyagi-associations",
-  "private_key_id": "dd206081d39a01e08b51caaada15388d53dbaa6e",
-  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQC1PCyU0CTCGID4\nxyWdnxi47bQfQ2c3FUJTw8ZRRwA54UBC2cAx8lOaDpdelZvSXUdtjDk9JOu3aKR3\nbrocY0TzoNR0mRCPhmrHDBUrvQZXlnad18W4LHgBgrel+K+c2/Wj5MHNcMAhIviq\n25qYKClchQjvoWKSbf3g26SR8dVq9cfqO/5hh9Evpz2DDvdREGMMV0LzBIQAEOOY\ngsQeuuQLusVHBRJ510gZUHmJmgXMWLFF7qPKx5ijND4evawHd9WbW2KtJL0xF/JB\nW58XBTWTlXSi4LSnujBZFJmW60HrWAfu1FId/4f5302VultPalsuhlcQROECR0E6\ns243dygVAgMBAAECggEAAJm/Y5omYya+V5w8oRYHh6ZLar8a58BLddshZ7MTW3gZ\nCIkXQE9bJifHooQihXe0fSA11Q3NzAwmX1/jgFnB+1NJladyyTBifX5e39MsEBcu\n2TWlIlMb3u7SjIETaJxAG+bt7XtqZ5OWzBKesqWtipZb61bmRtdbpW4rfa1/Ptle\n0Taq8SJzBWQq7AzsW/Q3Ec+UT4Dec/VA9CCQBtFI8lkEnzX1+tR83lhR3NpS4o4k\nzc9myiqO6Vt/fS13OdW105bk7HgzIjbUWQ8e1XapfpgkIGpoeklLcNVR8GUOG8gG\nPN066tKVga6csOID8IIoolrMM5zUFq9Z8MmtwNbTAQKBgQDhWrrMZE87XMAklS5f\nA1laSXIUKW722nf4FYNTVA6An3FmoM901UOtpOI2jofCNyVA/A/M18EloW97bzi5\nWx6mn27o/ZtQZEolmAvdeNF0xSTS8XzRmMHsFGMiSPYWfoz+C1yh9+uFgRaaTDUn\nXsNLH9O15JcxmPHQNjvVW9UWkQKBgQDN4YQQG3oioahSo7pkPGWIdA3zIKunE1w2\nti+E7/UObiGJF6eXt9s9QI0UqrINklL7BWYJhYtrVyCtXWfnkkhi+1n7IQnBC2Qo\nUgQqDDalQQBsVsH3mKsROPq/nVudQ7n1bRvdBLCa+0dtthrWi/6/S9TINdX6CgdS\nWB90DW5jRQKBgDkC/yceaX0XJfUbWLPo4P4afqXjJZOGCbvVlXfLWC/qJoJURKfG\nHG0dva0XufjEgsRCAK1OGCsxAEc2CB+8kbCNvT1si5J3DNsd8EKDgloMVhiXx4Av\nKUBUmA/gbYGbWogaz8CaPBd2ZQV8KiZfrwCeeK0Xu7hsfSCz18dOiEZBAoGAQUxP\niJROboF7U4qeaYBGa7rzWbN4/erECo5KEA3TWZpQhJy+CP7FSG4a0P06r9dC/l69\n+DMk/wyJTrMba3UYBFzYMzBNWa71O1yX+YYaJtuw+KujpZYEW9gIn5GXJw/+APt0\nJOuB4AXmp8NkS7vnNmEkwcNhdIaNv+43O6Wu50kCgYBBqUMthd+OeyMXNxJUW7G2\n6sTo0QwvQiaX1MHF0iJt5WKsdYaZ+/rB/+A9DCUyixK8fTBvOuN6jHilPeo6wMjk\nVw7YxrTS/uttkdqKtWNzGbaDApgKrUGnwjSLhCQz1JPbNdftFuPo237qFi3yQm43\nxYWWPSjbwq/4bhXoGCyPcQ==\n-----END PRIVATE KEY-----\n",
-  "client_email": "firebase-adminsdk-m7aks@babyagi-associations.iam.gserviceaccount.com",
-  "client_id": "109642695067578102656",
-  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-  "token_uri": "https://oauth2.googleapis.com/token",
-  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-m7aks%40babyagi-associations.iam.gserviceaccount.com"
-}
+Enter json
